@@ -1,0 +1,11 @@
+services:
+  nginx:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 80:80
+      # NextJs Application port
+      - 443:443
+      # chat app Server
+      - 1443:1443
