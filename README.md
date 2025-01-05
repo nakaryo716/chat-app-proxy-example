@@ -3,23 +3,16 @@
 本番環境では使えません  
 [チャットアプリケーションのクライアントサイド実装](https://github.com/nakaryo716/chat-app)  
 [チャットアプリケーションのサーバーサイド実装](https://github.com/nakaryo716/chat-app-server)  
-## RUN
-1. SSL証明書の作成
-ここではexampleの為にオレオレ証明書を発行します  
-```ssl/README.md```に従って証明書を発行してください  
-```bash
-cd ssl
-```
-2. Nginxコンテナの立ち上げ  
-```compose.yaml```ファイルがあるディレクトリでコンテナを起動させてください  
-```
-docker compose up
-```
 ## アプリケーションの全体の実行
 ### 1.サーバーサイドのセットアップ
 リポジトリのクローン
 ```bash
 git clone https://github.com/nakaryo716/chat-app
+```
+```.env```ファイルのALLOW_ORIGINのIPアドレスを自身のコンピュータのIPアドレスに修正  
+```env
+ALLOW_ORIGIN=https://192.168.0.1
+                    #+++++++++++Fix 
 ```
 コンテナ起動
 ```
@@ -33,6 +26,13 @@ git clone https://github.com/nakaryo716/chat-app-server
 ライブラリのインストール
 ```bash
 npm i
+```
+ ```src/api/api.ts```のサーバーサイドのURLを自身のコンピュータのIPアドレスに修正(ポート番号はそのまま)
+```typescript
+export const HostApi = "https://192.168.1.0:1443";
+                             //++++++++++++Fix
+export const HostWsApi = "wss://192.168.1.0:1443";
+                             //++++++++++++Fix
 ```
 コンテナ起動
 ```
@@ -52,3 +52,6 @@ openssl ...
 ```bash
 docker compose up
 ```
+### 4.完了
+```https://{あなたが指定したipアドレス}/```でアクセス可能です！
+
