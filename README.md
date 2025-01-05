@@ -41,7 +41,7 @@ docker compose up
 ### 3.プロキシサーバー(Example)のセットアップ
 リポジトリのクローン
 ```bash
-git clone 
+git clone https://github.com/nakaryo716/chat-app-proxy-example.git
 ```
 SSL証明書の発行(詳しくは```ssl/README.md```を参照)
 ```bash
